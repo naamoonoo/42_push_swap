@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dispatch_table.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/13 12:06:01 by hnam              #+#    #+#             */
+/*   Updated: 2019/05/13 12:06:12 by hnam             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	dispatch_table(t_stack *a, t_stack *b, char *command)
@@ -18,8 +30,8 @@ void	dispatch_table(t_stack *a, t_stack *b, char *command)
 	{
 		if (COMMAND_TO(command) == 's')
 		{
-			command[1] == 'r' ? reverse_rotate(a) : rotate(a);
-			command[1] == 'r' ? reverse_rotate(b) : rotate(b);
+			REVERSE_ORDER(command) ? reverse_rotate(b) : rotate(b);
+			REVERSE_ORDER(command) ? reverse_rotate(a) : rotate(a);
 		}
 		else if (COMMAND_TO(command) == 'a')
 			command[1] == 'r' ? reverse_rotate(a) : rotate(a);

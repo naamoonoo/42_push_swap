@@ -1,8 +1,8 @@
 NAME = push_swap
 
-SRC=$(wildcard src/*.c)
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror -Iincludes
+CFLAGS=-Wall -Wextra -Werror -Iincludes -g -fsanitize=address
+SRC=$(wildcard src/*.c)
 OBJ = $(patsubst src/%.c, obj/%.o, $(SRC))
 
 all: $(NAME)

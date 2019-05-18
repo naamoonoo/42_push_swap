@@ -21,7 +21,7 @@ void	initialize_stack(t_stack *s, int ac, char *av[])
 			push(s, ft_atoi(av[ac]));
 	}
 }
-// make && ARG=`ruby -e "puts (1..5).to_a.shuffle.join(' ')"`; ./push_swap $ARG
+
 int	main(int ac, char *av[])
 {
 
@@ -30,9 +30,9 @@ int	main(int ac, char *av[])
 	initialize_stack(&a, ac, av);
 	a.top = NULL;
 	b.top = NULL;
-	// DP(&a, &s
 	printf("ac : %d\n", ac);
 	printf("av[1] : %s\n", av[1]);
+	// DP(&a, &s
 	// // FP("first input %d\t last input %d\n", a.last->data, a.top->data);
 	// DP(&a, &b, "sa");
 	// DP(&a, &b, "pb");
@@ -46,7 +46,6 @@ int	main(int ac, char *av[])
 	// DP(&a, &b, "pa");
 	// DP(&a, &b, "pa");
 	// DP(&a, &b, "pa");
-
 	// DP(&a, &b, "rra");
 	// DP(&a, &b, "pb");
 	// DP(&a, &b, "sa");

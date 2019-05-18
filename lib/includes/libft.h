@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 23:24:35 by hnam              #+#    #+#             */
-/*   Updated: 2019/04/28 21:34:30 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/13 12:40:22 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int64_t				ft_pow(int64_t base, int times);
 uint64_t			ft_pow_u(uint64_t base, int times);
 int					ft_pgcd(int a, int b);
 void				itoa_minus_hande(int64_t *n, char *res, int *len, int *i);
-char				*ft_itoa(int64_t n);
+char				*ft_itoa(int n);
 char				*ft_itoa_base(int64_t n, int str_base, int len);
 char				*ft_itoa_base_u(uint64_t n, int str_base, int len);
 int					get_big(int a, int b);

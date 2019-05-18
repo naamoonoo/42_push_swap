@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/17 14:55:50 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/17 16:05:55 by hnam             ###   ########.fr       */
+/*   Created: 2019/05/13 12:05:03 by hnam              #+#    #+#             */
+/*   Updated: 2019/05/17 14:50:33 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,71 @@ void	push(t_stack *stack, int data)
 {
 	t_node	*node;
 
-	node = (t_node *)malloc(sizeof(t_node));
+	node = malloc(sizeof(t_node));
 	node->data = data;
-	node->next = NULL;
-	if (stack->top)
-		node->next = stack->top;
-	stack->top = node;
+	if (!stack->count)
+	{
+		node->next = node;
+		node->prev = node;
+		stack->top = node;
+		stack->last = node;
+	}
+	else
+	{
+		node->prev = stack->top;
+		node->next = stack->last;
+		stack->top = node;
+		stack->last->prev = node;
+	}
+	stack->count += 1;
 }
 
 int		pop(t_stack *stack)
 {
+	t_node	*curr;
 	int		data;
-	t_node	*node;
 
 	if (!stack->top)
-		return (-1);
-	node = stack->top;
-	data = node->data;
-	stack->top = node->next;
-	free(node);
-	return data;
+	{
+		FP("stack underflow\n");
+		return (INT_MIN);
+	}
+	curr = stack->top;
+	data = curr->data;
+
+	stack->top = curr->prev;
+	stack->last->prev = stack->top;
+	stack->top->next = stack->last;
+	free(curr);
+	stack->count -= 1;
+	if (!stack->count)
+	{
+		stack->top = NULL;
+		stack->last = NULL;
+	}
+	return (data);
 }
 
-void	peek(t_stack *stack)
+void	top(t_stack *stack)
 {
 	FP("%d is top/first out/last in value\n", stack->top->data);
 }
 
 int		is_empty(t_stack *stack)
 {
-	if (stack->top)
-		return (0);
-	return (1);
+	return (stack->count == 0);
 }
 
 void	show(t_stack *stack)
 {
-	t_node	*curr;
+	int limit;
 
 	FP("last in == first out == top \n");
-	curr = stack->top;
-	while (curr)
+	limit = stack->count + 3;
+	while (limit--)
 	{
-		FP("%d\n", curr->data);
-		curr = curr->next;
+		FP("%d\n", stack->top->data);
+		stack->top = stack->top->prev;
 	}
 	FP("first in == last out == last\n");
 }
