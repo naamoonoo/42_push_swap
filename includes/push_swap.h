@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 13:31:49 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/17 15:44:03 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/22 23:38:19 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PUSH_SWAP_H
 
 #include <stdio.h>
+
+# include <sys/ioctl.h>
 
 # include "../lib/includes/ft_printf.h"
 # include "../lib/includes/libft.h"
@@ -31,36 +33,45 @@ typedef struct			s_node
 {
 	int					data;
 	struct s_node		*next;
-	// struct s_node		*prev;
 }						t_node;
 
 typedef struct			s_stack
 {
 	t_node				*top;
-	// t_node				*last;
-	// int					count;
+	// t_node				*dup;
+	int					min;
+	int					max;
+	int					count;
 }						t_stack;
+
 
 void					push(t_stack *stack, int data);
 int						pop(t_stack *stack);
 void					show(t_stack *stack);
-void					peek(t_stack *stack);
+int						peek(t_stack *stack);
 int						is_empty(t_stack *stack);
 
+int						read_dispatcher(t_stack *a, t_stack *b);
 void					dispatch_table(t_stack *a, t_stack *b, char *command);
+
+int						initialize_stack(t_stack *s, int ac, char *av[]);
 
 void					ft_swap(t_stack *stack);
 void					ft_push(t_stack	*from, t_stack *to);
 void					reverse_rotate(t_stack *stack);
 void					rotate(t_stack *stack);
 
-
-void					error_alert(int type);
-void					error_exit(int type);
-
+void					sort(t_stack *a, t_stack *b);
+int						find_rep(t_stack *a, t_stack *b);
 
 
-int						check_sorted(t_stack *a, t_stack *b);
+int						is_existed(t_stack *stack, int val);
+int						check_sorted(t_stack *stack);
+int						check_sorted_r(t_stack *stack);
+
+int						check_valid_command(char *command);
+
+void					free_stack(t_stack *stack);
 
 
 #endif
