@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/17 14:55:50 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/22 22:53:29 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/23 22:17:54 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,18 @@ void	push(t_stack *stack, int data)
 	node = (t_node *)malloc(sizeof(t_node));
 	node->data = data;
 	node->next = NULL;
-	if (stack->top)
+	if (!stack->top)
+	{
+		stack->max = data;
+		stack->min = data;
+	}
+	else
 		node->next = stack->top;
 	stack->top = node;
+	if (data > stack->max)
+		stack->max = data;
+	if (data < stack->min)
+		stack->min = data;
 	stack->count += 1;
 }
 
@@ -37,6 +46,11 @@ int		pop(t_stack *stack)
 	stack->top = node->next;
 	free(node);
 	stack->count -= 1;
+	if (data == stack->min)
+		stack->min = stack->top ? stack->top->data : INT_MAX;
+	if (data == stack->max)
+		stack->max = stack->top ? stack->top->data : INT_MIN;
+	set_max_min(stack);
 	return data;
 }
 
@@ -60,7 +74,9 @@ void	show(t_stack *stack)
 	t_node	*curr;
 
 	// FP("last in == first out == top \n");
-	curr = stack->top;
+	if (!(curr = stack->top))
+		return ;
+	// FP("max : %d\t min : %d\t count : %d\n", stack->max, stack->min, stack->count);
 	while (curr)
 	{
 		FP("%d\n", curr->data);

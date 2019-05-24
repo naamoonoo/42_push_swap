@@ -14,7 +14,7 @@ int	main(int ac, char *av[])
 		FP("Error : INVALID INPUT\n");
 		return (0);
 	}
-	if (!read_dispatcher(a, b))
+	if (!read_dispatcher(a, b, 1))
 		return (0);
 	if (is_empty(b) && check_sorted(a))
 		FP("OK\n");

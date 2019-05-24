@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 12:06:01 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/23 00:19:49 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/24 01:43:37 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,10 @@ void	dispatch_table(t_stack *a, t_stack *b, char *command)
 		else if (COMMAND_TO(command) == 'b')
 			command[1] == 'r' ? reverse_rotate(b) : rotate(b);
 	}
-	// if (check_valid_command(command))
-		FP("%s\n", command);
-		show(a);
-		printf("--------------\n");
-		show(b);
+	FP("%s\n", command);
 }
 
-int		read_dispatcher(t_stack *a, t_stack *b)
+int		read_dispatcher(t_stack *a, t_stack *b, int visual)
 {
 	char	*command;
 	// int		fd;
@@ -62,12 +58,15 @@ int		read_dispatcher(t_stack *a, t_stack *b)
 			// do i have to quit? or just tell them put valid input
 		}
 		DP(a, b, command);
-		// write(1, "\e[1;1H\e[2J", 12);
-		system("clear");
-		// system("column -c 20");
-		show(a);
-		printf("--------------\n");
-		show(b);
+		if (visual)
+		{
+				// write(1, "\e[1;1H\e[2J", 12);
+			system("clear");
+			// system("column -c 20");
+			show(a);
+			printf("--------------\n");
+			show(b);
+		}
 
 		// system("column RR");
 		// ststem(printf "PERM LINKS OWNER GROUP SIZE MONTH DAY " ; \
