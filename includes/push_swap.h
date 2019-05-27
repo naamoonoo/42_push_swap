@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 13:31:49 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/24 01:42:41 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/26 21:59:04 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ typedef struct			s_stack
 	t_node				*top;
 	int					min;
 	int					max;
-	int					count;
+	int					cnt;
 }						t_stack;
 
 
 
 void					push(t_stack *stack, int data);
 int						pop(t_stack *stack);
-void					show(t_stack *stack);
+
 int						peek(t_stack *stack);
 int						is_empty(t_stack *stack);
 
@@ -61,20 +61,33 @@ void					ft_push(t_stack	*from, t_stack *to);
 void					reverse_rotate(t_stack *stack);
 void					rotate(t_stack *stack);
 
-void					sort(t_stack *a, t_stack *b);
-void					sort_a_3(t_stack *a);
-void					sort_a_5(t_stack *a, t_stack *b);
+void					sort(t_stack *a, t_stack *b, int cnt);
+void					sort_only_3(t_stack *a);
+void					sort_only_5(t_stack *a, t_stack *b);
+
+void	sort_a(t_stack *a, t_stack *b, int cnt);
+void	sort_b(t_stack *a, t_stack *b, int cnt);
+void	split_sort_a(t_stack *a, t_stack *b, int len);
+void	split_sort_b(t_stack *a, t_stack *b, int len);
+
+
 int						find_rep(t_stack *a, t_stack *b);
 
 
 int						is_existed(t_stack *stack, int val);
-int						check_sorted(t_stack *stack);
-int						check_sorted_r(t_stack *stack);
+int						check_sorted(t_stack *stack, int cnt);
+int						check_sorted_r(t_stack *stack, int cnt);
 
 int						check_valid_command(char *command);
 
 void					split_stack(t_stack *a, t_stack *b);
 void					set_max_min(t_stack *stack);
+int		get_median(t_stack *stack, int len);
+void	visual_bar(int number, int total);
+void				show(t_stack *stack, int show, int total);
+
+
+
 
 void					free_stack(t_stack *stack);
 

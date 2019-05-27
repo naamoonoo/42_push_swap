@@ -16,7 +16,7 @@ int	main(int ac, char *av[])
 	}
 	if (!read_dispatcher(a, b, 1))
 		return (0);
-	if (is_empty(b) && check_sorted(a))
+	if (is_empty(b) && check_sorted(a, a->cnt))
 		FP("OK\n");
 	else
 		FP("KO\n");

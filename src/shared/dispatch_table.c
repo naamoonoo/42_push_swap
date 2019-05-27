@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 12:06:01 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/24 01:43:37 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/27 00:18:11 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,41 +39,40 @@ void	dispatch_table(t_stack *a, t_stack *b, char *command)
 			command[1] == 'r' ? reverse_rotate(b) : rotate(b);
 	}
 	FP("%s\n", command);
+	// FP("%s--------------\n", command);
+	// 	show(a);
+	// 	printf("###############\n");
+	// 	show(b);
 }
 
 int		read_dispatcher(t_stack *a, t_stack *b, int visual)
 {
 	char	*command;
-	// int		fd;
+	int		counter;
 
-	// fd = open("res.txt", O_RDONLY | O_CREAT);
 	command = NULL;
+	counter = 0;
 	while(get_next_line(0, &command) > 0)
 	{
-		// FP("|%s|\n", command);
+
 		if (!check_valid_command(command))
 		{
 			FP("Error : INVALID COMMAND\n");
 			continue; // return (0);
-			// do i have to quit? or just tell them put valid input
 		}
 		DP(a, b, command);
 		if (visual)
 		{
-				// write(1, "\e[1;1H\e[2J", 12);
 			system("clear");
-			// system("column -c 20");
-			show(a);
-			printf("--------------\n");
-			show(b);
+			FP("Stack A---------------------------------------------------\n");
+
+			show(a, 1, a->cnt + b->cnt);
+			FP("Stack B---------------------------------------------------\n");
+			show(b, 1, a->cnt + b->cnt);
 		}
-
-		// system("column RR");
-		// ststem(printf "PERM LINKS OWNER GROUP SIZE MONTH DAY " ; \
-        //    printf "HH:MM/YEAR NAME\n" ; \
-        //    ls -l | sed 1d) | column -t
 		ft_strdel(&command);
+		counter += 1;
 	}
+	FP("[%d] number sorted with total move : %d\n", a->cnt, counter);
 	return (1);
-
 }

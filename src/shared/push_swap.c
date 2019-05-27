@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 12:07:30 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/23 18:00:17 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/26 17:50:26 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	rotate(t_stack *stack)
 		stack->max = new->data;
 	if (new->data < stack->min)
 		stack->min = new->data;
-	stack->count++;
+	stack->cnt++;
 }
 
 void	reverse_rotate(t_stack *stack)
@@ -98,6 +98,6 @@ void	reverse_rotate(t_stack *stack)
 		last = last->next;
 	free(last->next);
 	last->next = NULL;
-	stack->count--;
+	stack->cnt--;
 	push(stack, tmp);
 }

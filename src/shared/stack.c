@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/17 14:55:50 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/23 22:17:54 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/26 21:59:37 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	push(t_stack *stack, int data)
 		stack->max = data;
 	if (data < stack->min)
 		stack->min = data;
-	stack->count += 1;
+	stack->cnt += 1;
 }
 
 int		pop(t_stack *stack)
@@ -45,7 +45,7 @@ int		pop(t_stack *stack)
 	data = node->data;
 	stack->top = node->next;
 	free(node);
-	stack->count -= 1;
+	stack->cnt -= 1;
 	if (data == stack->min)
 		stack->min = stack->top ? stack->top->data : INT_MAX;
 	if (data == stack->max)
@@ -69,17 +69,19 @@ int		is_empty(t_stack *stack)
 	return (1);
 }
 
-void	show(t_stack *stack)
+void	show(t_stack *stack, int show, int total)
 {
 	t_node	*curr;
 
 	// FP("last in == first out == top \n");
 	if (!(curr = stack->top))
 		return ;
-	// FP("max : %d\t min : %d\t count : %d\n", stack->max, stack->min, stack->count);
+	// FP("max : %d\t min : %d\t count : %d\n", stack->max, stack->min, stack->cnt);
 	while (curr)
 	{
-		FP("%d\n", curr->data);
+		show ?
+			visual_bar(curr->data, total)
+			: FP("%d\n", curr->data);
 		curr = curr->next;
 	}
 	// FP("first in == last out == last\n");

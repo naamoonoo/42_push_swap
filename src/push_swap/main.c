@@ -14,9 +14,9 @@ int	main(int ac, char *av[])
 		FP("Error : INVALID INPUT\n");
 		return (0);
 	}
-	if (check_sorted(a) && is_empty(b))
+	if (check_sorted(a, a->cnt) && is_empty(b))
 		return (0);
-	sort(a, b);
+	sort(a, b, a->cnt);
 
 
 	// sort_3(a, b);

@@ -6,61 +6,52 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 22:42:50 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/24 15:20:19 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/26 23:58:21 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	split_stack(t_stack *a, t_stack *b)
-{
-	int median;
-	int	cnt;
+// void	split_stack(t_stack *a, t_stack *b)
+// {
+// 	int median;
+// 	int	cnt;
 
-	cnt = 0;
-	median = (a->max + a->min) / 2;
-	while (a->min < median)
+// 	cnt = 0;
+// 	median = (a->max + a->min) / 2;
+// 	while (a->min < median)
+// 	{
+// 		if (peek(a) <= median)
+// 		{
+// 			DP(a, b, "pb");
+// 			cnt++;
+// 		}
+// 		else
+// 			DP(a, b, "ra");
+// 	}
+// 	// sort_b(a, b, cnt);
+// }
+
+
+
+void	sort(t_stack *a, t_stack *b, int total)
+{
+	if (check_sorted(a, total))
 	{
-		if (peek(a) <= median)
-		{
-			DP(a, b, "pb");
-			cnt++;
-		}
+		if (!is_empty(b))// && check_sorted_r(b, total - a->cnt))
+			DP(a, b, "pa");
 		else
-			DP(a, b, "ra");
+			return ;
 	}
-	// sort_b(a, b, cnt);
-}
-
-void	sort_b(t_stack *a, t_stack *b, int cnt)
-{
-	if (b->top->data == b->max)
-		DP(a, b, "pa");
-	cnt++;
-}
-
-void	sort(t_stack *a, t_stack *b)
-{
-	if (check_sorted(a) && is_empty(b))
-		return ;
-	if (a->count <= 5 && !is_empty(b))
+	else
 	{
-
-		return sort_a_5(a, b);
-		// system("clear");
-		// show(a);
-		// printf("--------------\n");
-		// show(b);
-
-		// return ;
+		if (total == a->cnt && total < 5)
+			sort_only_5(a, b);
+		// else if (a->cnt <= 3)
+		else
+			sort_a(a, b, a->cnt);
 	}
-	if (a->count == 3 && is_empty(b))
-		return sort_a_3(a);
-	if (a->count <= 5 && is_empty(b))
-		return sort_a_5(a, b);
-	if (a->count > 5)
-		split_stack(a, b);
-	sort(a, b);
+	sort(a, b, total);
 }
 
 // int		find_rep(t_stack *a, t_stack *b)
@@ -72,14 +63,14 @@ void	sort(t_stack *a, t_stack *b)
 // 	a_top = peek(a);
 // 	tmp = b->top;
 // 	rep_time = 0;
-// 	if (b->count == 2)
+// 	if (b->cnt == 2)
 // 		return (1);
 // 	while (tmp && a_top < tmp->data)
 // 	{
 // 		rep_time += 1;
 // 		tmp = tmp->next;
 // 	}
-// 	if ((double)b->count / 2.0 > (double)rep_time)
+// 	if ((double)b->cnt / 2.0 > (double)rep_time)
 // 		return (rep_time);
 // 	return (rep_time * -1);
 // }
