@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 12:06:01 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/27 00:18:11 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/27 20:39:23 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ void	dispatch_table(t_stack *a, t_stack *b, char *command)
 			command[1] == 'r' ? reverse_rotate(b) : rotate(b);
 	}
 	FP("%s\n", command);
-	// FP("%s--------------\n", command);
-	// 	show(a);
-	// 	printf("###############\n");
-	// 	show(b);
+	// FP("Stack A---------------------------------------------------\n");
+
+	// show(a, 1, a->cnt + b->cnt);
+	// FP("Stack B---------------------------------------------------\n");
+	// show(b, 1, a->cnt + b->cnt);
 }
 
 int		read_dispatcher(t_stack *a, t_stack *b, int visual)

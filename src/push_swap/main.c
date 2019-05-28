@@ -16,7 +16,10 @@ int	main(int ac, char *av[])
 	}
 	if (check_sorted(a, a->cnt) && is_empty(b))
 		return (0);
-	sort(a, b, a->cnt);
+	if (a->cnt <= 5)
+		sort_only_5(a, b);
+	else
+		split_sort_a(a, b, a->cnt);
 
 
 	// sort_3(a, b);
@@ -31,6 +34,7 @@ int	main(int ac, char *av[])
 	// show(a);
 	// FP("b show!\n");
 	// show(b);
+	free_stack(a);
 	// while (1)
 	// 	sleep(1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 13:31:49 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/26 21:59:04 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/27 20:28:26 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,13 @@ void					sort_only_3(t_stack *a);
 void					sort_only_5(t_stack *a, t_stack *b);
 
 void	sort_a(t_stack *a, t_stack *b, int cnt);
-void	sort_b(t_stack *a, t_stack *b, int cnt);
+void	sort_b(t_stack *a, t_stack *b, int dir, int is_pushed);
 void	split_sort_a(t_stack *a, t_stack *b, int len);
 void	split_sort_b(t_stack *a, t_stack *b, int len);
+// void	split_sort_a(t_stack *a, t_stack *b, int len, int last);
 
 
-int						find_rep(t_stack *a, t_stack *b);
+int						find_rep(t_stack *stack);
 
 
 int						is_existed(t_stack *stack, int val);
@@ -84,6 +85,7 @@ void					split_stack(t_stack *a, t_stack *b);
 void					set_max_min(t_stack *stack);
 int		get_median(t_stack *stack, int len);
 void	visual_bar(int number, int total);
+int		unsorted_cnt(t_stack *a);
 void				show(t_stack *stack, int show, int total);
 
 
