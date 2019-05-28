@@ -6,47 +6,15 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 22:42:50 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/27 20:47:23 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/27 23:11:11 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	sort(t_stack *a, t_stack *b, int total)
-// {
-	// FP("@@@@@@@default sort##########\n");
 
-// 	if (check_sorted(a, total))
-// 		return ;
-// 	else
-// 	{
-// 		if (total == a->cnt && total < 5)
-// 			sort_only_5(a, b);
-// 		else
-// 			split_sort_a(a, b, a->cnt, last);
-// 	}
-// 	// sort(a, b, total);
-// }
 
-int		find_rep(t_stack *stack)
-{
-	t_node	*node;
-	int		idx;
-
-	if (!(node = stack->top))
-		return (0);
-	idx = 0;
-	while (node->data != stack->max)
-	{
-		idx++;
-		node = node->next;
-	}
-	if (stack->cnt - idx > stack->cnt / 2)
-		return (1);
-	return (0);
-}
-
-void	split_sort_a(t_stack *a, t_stack *b, int len)
+void	split_sort(t_stack *a, t_stack *b, int len)
 {
 	// FP("@@@@@@split number with [%d]@@@@@\n", len);
 	int			median;
@@ -62,7 +30,8 @@ void	split_sort_a(t_stack *a, t_stack *b, int len)
 		sort_a(a, b, len);
 	cnt = 0;
 	median = get_median(a, len);
-
+	if (check_sorted(a, a->cnt))
+		return ;
 	while (a->min <= median)
 	{
 		if (call_time && peek(a) == a->min)
@@ -79,11 +48,11 @@ void	split_sort_a(t_stack *a, t_stack *b, int len)
 		}
 	}
 	i = 0;
-		FP("split ended on b side %d number will be rr\n", get_small(cnt, a->cnt));
+		// FP("split ended on b side %d number will be rr\n", get_small(cnt, a->cnt));
 		// FP("cnt : %d\ta->cnt : %d\t len :%d\n", cnt, a->cnt, len);
 	while (call_time && len - cnt > i++)
 		DP(a, b, "rra");
-	sort_b(a, b, find_rep(b), 0);
+	sort(a, b, dir_setting(b));
 	if (check_sorted(a, a->cnt))
 		return ;
 	while (peek(a) <= median)
@@ -100,45 +69,59 @@ void	split_sort_a(t_stack *a, t_stack *b, int len)
 			return ;
 	}
 	call_time += 1;
-	if (call_time == 2)
-		return ;
+	// if (call_time == 2)
+	// 	return ;
 	if (a->cnt > cnt)
-		split_sort_a(a, b, unsorted_cnt(a));
+		split_sort(a, b, unsorted_cnt(a));
 }
 
 
-void	sort_b(t_stack *a, t_stack *b, int dir, int is_pushed)
+void	sort(t_stack *a, t_stack *b, int dir)
 {
 	if (!b->cnt)
 		return ;
-// if (is_pushed && peek(a) < b->min && b->cnt)
-// 	{
-
-// 		// !check_sorted(a, a->cnt) ? DP(a, b, dir ? "rr" : "ra") : 0;
-// 		DP(a, b, !dir ? "rr" : "ra");
-// 		is_pushed = 0;
-// 	}
-// 	else
-	if (peek(b) == b->max)
+	if (peek(b) == b->max || peek(b) == b->min)
 	{
 		DP(a, b, "pa");
-		is_pushed = 1;
-		dir = find_rep(b);
-		// peek(a) > b->max ? (dir = find_rep(b)) : 0;
+		if (b->cnt && peek(a) < b->min)
+			DP(a, b, (dir && peek(b) != b->max && peek(b) != b->min) ? "rr" : "ra");
+		dir = dir_setting(b);
 	}
 	else
 	{
-		if (is_pushed && peek(a) < b->min && b->cnt)
-		{
-
-			// !check_sorted(a, a->cnt) ? DP(a, b, dir ? "rr" : "ra") : 0;
-			DP(a, b, !dir ? "rr" : "ra");
-			is_pushed = 0;
-		}
-		else
-			DP(a, b, dir ? "rb" : "rrb");
+		DP(a, b, dir ? "rb" : "rrb");
 	}
-	sort_b(a, b, dir, is_pushed);
+	sort(a, b, dir);
+}
+
+// 1-> r // 0 -> rr
+int		dir_setting(t_stack *stack)
+{
+	t_node	*node;
+	int		idx;
+	int		max_dir;
+	int		min_dir;
+
+	node = stack->top;
+	idx = 0;
+	while (node && node->data != stack->max)
+	{
+		idx++;
+		node = node->next;
+	}
+	max_dir = (idx < stack->cnt / 2) ? idx : (stack->cnt - idx) * -1;
+	node = stack->top;
+	idx = 0;
+	while (node && node->data != stack->min)
+	{
+		idx++;
+		node = node->next;
+	}
+	min_dir = (idx < stack->cnt / 2) ? idx : (stack->cnt - idx) * -1;
+	if (max_dir * min_dir > 0)
+		return (max_dir > 0 ? 1 : 0);
+	return (ABS(max_dir) < ABS(min_dir) ?
+		(max_dir > 0 ? 1 : 0) : (min_dir > 0 ? 1 : 0));
 }
 
 int		unsorted_cnt(t_stack *a)

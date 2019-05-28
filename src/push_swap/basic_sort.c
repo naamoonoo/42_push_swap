@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 15:20:10 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/27 13:41:41 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/27 23:08:07 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ void	sort_a(t_stack *a, t_stack *b, int cnt)
 			DP(a, b, "pa");
 		}
 	// else if (cnt > 3)
-	// 	split_sort_a(a, b, cnt);
+	// 	split_sort(a, b, cnt);
 	sort_a(a, b, cnt);
 }
 
 // 1
-// void	sort_b(t_stack *a, t_stack *b, int dir)
+// void	sort(t_stack *a, t_stack *b, int dir)
 // {
 // 	// FP("@@@@@@@sort bbbbbbb@@@@@@@[%d]\n", cnt);
 // 	// int is_pushed;
@@ -104,11 +104,11 @@ void	sort_a(t_stack *a, t_stack *b, int cnt)
 // 			DP(a, b, dir ? "rb" : "rrb");
 // 	}
 
-// 	sort_b(a, b, dir);
+// 	sort(a, b, dir);
 // }
 
 //2
-// void	sort_b(t_stack *a, t_stack *b, int dir, int is_pushed)
+// void	sort(t_stack *a, t_stack *b, int dir, int is_pushed)
 // {
 // 	// FP("@@@@@@@sort bbbbbbb@@@@@@@[%d]\n", cnt);
 // 	// int is_pushed;
@@ -133,12 +133,12 @@ void	sort_a(t_stack *a, t_stack *b, int cnt)
 // 			DP(a, b, dir ? "rb" : "rrb");
 // 	}
 
-// 	sort_b(a, b, dir, is_pushed);
+// 	sort(a, b, dir, is_pushed);
 // }
 
 
 
-// void	split_sort_a(t_stack *a, t_stack *b, int len)
+// void	split_sort(t_stack *a, t_stack *b, int len)
 // {
 // 	FP("@@@@@@@split AAAAAAA@@@@@@@[%d]\n", len);
 // 	int median;
@@ -171,7 +171,7 @@ void	sort_a(t_stack *a, t_stack *b, int cnt)
 // 	// sort_a(a, b, a->cnt);
 // 	FP("set to first foramtion\n");
 // 	if (cnt > 0)
-// 		sort_b(a, b, cnt);
+// 		sort(a, b, cnt);
 // 	FP("nothing in the b anymore\n");
 // 	while (!check_sorted(a, a->cnt) && peek(a) <= median)
 // 		DP(a, b, "ra");
@@ -183,12 +183,12 @@ void	sort_a(t_stack *a, t_stack *b, int cnt)
 // 	if (check_sorted(a, a->cnt))
 // 		return ;
 // 	if (a->cnt - cnt > 3)
-// 		split_sort_a(a, b, a->cnt - cnt);
+// 		split_sort(a, b, a->cnt - cnt);
 // 	else
 // 		sort_a(a, b, a->cnt - cnt);
 // }
 
-// void	split_sort_b(t_stack *a, t_stack *b, int len)
+// void	split_sort(t_stack *a, t_stack *b, int len)
 // {
 // 	// FP("@@@@@@@split bbbbbbb@@@@@@@[%d]\n", len);
 // 	int median;
@@ -211,11 +211,11 @@ void	sort_a(t_stack *a, t_stack *b, int cnt)
 // 	// while (cnt - i++ > 0)
 // 	// 	DP(a, b, "rrb");
 // 	sort_a(a, b, cnt);
-// 	sort_b(a, b, b->cnt);
+// 	sort(a, b, b->cnt);
 // }
 
 
-// void	sort_b(t_stack *a, t_stack *b, int cnt)
+// void	sort(t_stack *a, t_stack *b, int cnt)
 // {
 // 	// FP("@@@@@@@sort bbbbbbb@@@@@@@[%d]\n", cnt);
 // 	if (!b->cnt || !cnt)
@@ -245,6 +245,6 @@ void	sort_a(t_stack *a, t_stack *b, int cnt)
 // 			DP(a, b, "pb");
 // 		}
 // 	else if (cnt > 3)
-// 		split_sort_b(a, b, cnt);
-// 	sort_b(a, b, cnt);
+// 		split_sort(a, b, cnt);
+// 	sort(a, b, cnt);
 // }
