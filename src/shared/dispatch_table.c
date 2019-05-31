@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 12:06:01 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/27 22:54:41 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/29 14:22:34 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ void	dispatch_table(t_stack *a, t_stack *b, char *command)
 		else if (COMMAND_TO(command) == 'b')
 			command[1] == 'r' ? reverse_rotate(b) : rotate(b);
 	}
-	FP("%s\n", command);
-	FP("Stack A---------------------------------------------------\n");
 
-	show(a, 1, a->cnt + b->cnt);
-	FP("Stack B---------------------------------------------------\n");
-	show(b, 1, a->cnt + b->cnt);
+
+	FP("%s\n", command);
+	// system("clear");
+	// FP("Stack A---------------------------------------------------\n");
+	// show(a, 1, a->cnt + b->cnt);
+	// FP("Stack B---------------------------------------------------\n");
+	// show(b, 1, a->cnt + b->cnt);
 }
 
 int		read_dispatcher(t_stack *a, t_stack *b, int visual)
@@ -55,10 +57,11 @@ int		read_dispatcher(t_stack *a, t_stack *b, int visual)
 	counter = 0;
 	while(get_next_line(0, &command) > 0)
 	{
-
 		if (!check_valid_command(command))
 		{
-			FP("Error : INVALID COMMAND\n");
+
+			FP("Error : INVALID COMMAND[%s]\n", command);
+			// return (0);
 			continue; // return (0);
 		}
 		DP(a, b, command);
@@ -66,7 +69,6 @@ int		read_dispatcher(t_stack *a, t_stack *b, int visual)
 		{
 			system("clear");
 			FP("Stack A---------------------------------------------------\n");
-
 			show(a, 1, a->cnt + b->cnt);
 			FP("Stack B---------------------------------------------------\n");
 			show(b, 1, a->cnt + b->cnt);

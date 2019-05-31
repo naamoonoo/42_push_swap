@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 13:31:49 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/27 23:08:07 by hnam             ###   ########.fr       */
+/*   Updated: 2019/05/29 00:51:19 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,19 @@ void					ft_push(t_stack	*from, t_stack *to);
 void					reverse_rotate(t_stack *stack);
 void					rotate(t_stack *stack);
 
-void					sort(t_stack *a, t_stack *b, int cnt);
+// void					sort(t_stack *a, t_stack *b, int cnt);
 void					sort_only_3(t_stack *a);
 void					sort_only_5(t_stack *a, t_stack *b);
 
 void	sort_a(t_stack *a, t_stack *b, int cnt);
-void	sort(t_stack *a, t_stack *b, int dir);
-void	split_sort(t_stack *a, t_stack *b, int len);
+void	sort(t_stack *a, t_stack *b, int dir, int cnt);
+void	merge_sort(t_stack *a, t_stack *b, int len, int cnt, int median);
 void	split_sort(t_stack *a, t_stack *b, int len);
 // void	split_sort(t_stack *a, t_stack *b, int len, int last);
+
+// void	sort(t_stack *a, t_stack *b, int dir, int *cnt);
+// int		merge_sort(t_stack *a, t_stack *b, int len, int cnt);
+void	sorted_to_last(t_stack *stk, int *cnt);
 
 
 int		dir_setting(t_stack *stack);
@@ -87,6 +91,7 @@ int		get_median(t_stack *stack, int len);
 void	visual_bar(int number, int total);
 int		unsorted_cnt(t_stack *a);
 void				show(t_stack *stack, int show, int total);
+
 
 
 
