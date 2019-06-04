@@ -6,37 +6,13 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 12:07:30 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/26 17:50:26 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/03 17:21:34 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		initialize_stack(t_stack *s, int ac, char *av[])
-{
-	int		tmp;
-	int		count;
-	char	**sets;
-
-	tmp = 0;
-	sets = (ac == 2 && ft_strchr(av[1], ' ')) ? ft_strsplit(av[1], ' ') : av;
-	if (ac-- == 2 && ft_strchr(av[1], ' '))
-		while (sets[tmp])
-			ac = ++tmp - 1;
-	count = tmp ? ac + 1 : ac;
-	while (count--)
-	{
-		if ((!(tmp = ft_atoi(sets[ac])) && ft_strcmp(sets[ac], "0")) ||
-			tmp > INT_MAX || tmp < INT_MIN || is_existed(s, tmp))
-			return (0);
-		else
-			push(s, tmp);
-		ac--;
-	}
-	return (1);
-}
-
-void	ft_swap(t_stack *stack)
+void	ps_swap(t_stack *stack)
 {
 	t_node	*tmp;
 
@@ -47,7 +23,7 @@ void	ft_swap(t_stack *stack)
 	stack->top->next = tmp;
 }
 
-void	ft_push(t_stack *from, t_stack *to)
+void	ps_push(t_stack *from, t_stack *to)
 {
 	int	tmp;
 

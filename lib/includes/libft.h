@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 23:24:35 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/13 12:40:22 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/03 17:11:49 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct		s_list
 # define ABS(x) ((x) < 0 ? (x) * -1 : (x))
 # define MAX_INT -2147483648
 # define IS_EXIST(x) ((x) ? 1 : 0)
+# define SWAP(x, y, temp) ( (temp)=(x), (x)=(y), (y)=(temp) )
 
 /*
 **---------------------memory handling---------------------
@@ -114,6 +115,10 @@ char				*ft_itoa_base(int64_t n, int str_base, int len);
 char				*ft_itoa_base_u(uint64_t n, int str_base, int len);
 int					get_big(int a, int b);
 int					get_small(int a, int b);
+long				ft_atol(const char *str);
+void				ft_n_swap(int *a, int *b);
+
+
 
 /*
 **---------------------checking---------------------

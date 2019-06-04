@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 12:06:01 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/29 14:22:34 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/03 17:23:32 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	dispatch_table(t_stack *a, t_stack *b, char *command)
 	{
 		if (COMMAND_TO(command) == 's')
 		{
-			ft_swap(a);
-			ft_swap(b);
+			ps_swap(a);
+			ps_swap(b);
 		}
 		else
-			COMMAND_TO(command) == 'a' ? ft_swap(a) : ft_swap(b);
+			COMMAND_TO(command) == 'a' ? ps_swap(a) : ps_swap(b);
 	}
 	else if (GET_COMMAND(command) == 'p')
-		COMMAND_TO(command) == 'a' ? ft_push(b, a) : ft_push(a, b);
+		COMMAND_TO(command) == 'a' ? ps_push(b, a) : ps_push(a, b);
 	else if (GET_COMMAND(command) == 'r')
 	{
 		if (COMMAND_TO(command) == 'r')
@@ -68,8 +68,10 @@ int		read_dispatcher(t_stack *a, t_stack *b, int visual)
 		if (visual)
 		{
 			system("clear");
+
 			FP("Stack A---------------------------------------------------\n");
 			show(a, 1, a->cnt + b->cnt);
+			// write(1, "\e[0J\e[80;1H", 10);
 			FP("Stack B---------------------------------------------------\n");
 			show(b, 1, a->cnt + b->cnt);
 		}

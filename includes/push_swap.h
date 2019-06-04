@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 13:31:49 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/29 00:51:19 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/03 17:34:08 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void					dispatch_table(t_stack *a, t_stack *b, char *command);
 
 int						initialize_stack(t_stack *s, int ac, char *av[]);
 
-void					ft_swap(t_stack *stack);
-void					ft_push(t_stack	*from, t_stack *to);
+void					ps_swap(t_stack *stack);
+void					ps_push(t_stack	*from, t_stack *to);
 void					reverse_rotate(t_stack *stack);
 void					rotate(t_stack *stack);
 
@@ -66,12 +66,12 @@ void					sort_only_3(t_stack *a);
 void					sort_only_5(t_stack *a, t_stack *b);
 
 void	sort_a(t_stack *a, t_stack *b, int cnt);
-void	sort(t_stack *a, t_stack *b, int dir, int cnt);
-void	merge_sort(t_stack *a, t_stack *b, int len, int cnt, int median);
+void	sort(t_stack *a, t_stack *b, int dir, int *cnt);
+void	merge_sort(t_stack *a, t_stack *b, int len, int cnt);//, int median);
 void	split_sort(t_stack *a, t_stack *b, int len);
 // void	split_sort(t_stack *a, t_stack *b, int len, int last);
 
-// void	sort(t_stack *a, t_stack *b, int dir, int *cnt);
+// int		sort(t_stack *a, t_stack *b, int dir, int unsorted);
 // int		merge_sort(t_stack *a, t_stack *b, int len, int cnt);
 void	sorted_to_last(t_stack *stk, int *cnt);
 
@@ -97,6 +97,15 @@ void				show(t_stack *stack, int show, int total);
 
 
 void					free_stack(t_stack *stack);
+
+
+
+void	ps_sort(t_stack *a, t_stack *b, int len);
+// int		*validation(char **sets, int count);//, int ac);
+int						*is_exist(int *arr, int count);
+int						*validation(char **sets, int count, int ac);
+
+
 
 
 #endif

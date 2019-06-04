@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 12:04:38 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/26 17:54:23 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/03 17:21:20 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,6 @@ int		check_sorted_r(t_stack *stack, int cnt)
 		curr = curr->next;
 	}
 	return (1);
-}
-
-int		is_existed(t_stack *stack, int val)
-{
-	t_node	*tmp;
-
-	tmp = stack->top;
-	while (tmp)
-	{
-		if (tmp->data == val)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
 }
 
 int		check_valid_command(char *command)

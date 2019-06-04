@@ -54,23 +54,23 @@ CH_O	=	$(O_SRD)	$(O_CHK)
 all		:	$(NAME)
 
 obj/%.o	: 	src/%.c
-			$(CC) $(CFLAGS) $(OPTION) -c -o $@ $<
+			@$(CC) $(CFLAGS) $(OPTION) -c -o $@ $<
 
 $(NAME)	:	obj $(CH_O) $(PS_O)
-			cd lib && make
-			mv lib/libftprintf.a .
-			$(CC) -o $(CH) $(CFLAGS) $(CH_O) libftprintf.a
-			$(CC) -o $(PS) $(CFLAGS) $(PS_O) libftprintf.a
+			@cd lib && make
+			@mv lib/libftprintf.a .
+			@$(CC) -o $(CH) $(CFLAGS) $(CH_O) libftprintf.a
+			@$(CC) -o $(PS) $(CFLAGS) $(PS_O) libftprintf.a
 
 db		:	obj $(CH_O) $(PS_O)
-			clear
-			cd lib && make
-			clear
-			mv lib/libftprintf.a .
-			clear
-			$(CC) -o $(CH) $(CFLAGS) $(CH_O) libftprintf.a $(DEBUG)
-			clear
-			$(CC) -o $(PS) $(CFLAGS) $(PS_O) libftprintf.a $(DEBUG)
+			# clear
+			@cd lib && make
+			# clear
+			@mv lib/libftprintf.a .
+			# clear
+			@$(CC) -o $(CH) $(CFLAGS) $(CH_O) libftprintf.a $(DEBUG)
+			# clear
+			@$(CC) -o $(PS) $(CFLAGS) $(PS_O) libftprintf.a $(DEBUG)
 			clear
 			###### excutable file $(PS) and $(CH) has been made
 

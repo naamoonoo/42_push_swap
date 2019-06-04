@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 22:42:50 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/30 16:18:23 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/03 17:35:05 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ void	split_sort(t_stack *a, t_stack *b, int len)
 			break ;
 		if (peek(a) <= median)
 		{
-			// ft_push(a, b);
 			DP(a, b, "pb");
 			cnt++;
 		}
 		else
-			// rotate(a);
 			DP(a, b, "ra");
 	}
-	merge_sort(a, b, len, cnt, median);
+	merge_sort(a, b, len, cnt);//, median);
 	call_time += 1;
 	// if (call_time == 1)
 	// 	return ;
@@ -45,13 +43,16 @@ void	split_sort(t_stack *a, t_stack *b, int len)
 		split_sort(a, b, unsorted_cnt(a));
 }
 
-void	merge_sort(t_stack *a, t_stack *b, int len, int cnt, int median)
+void	merge_sort(t_stack *a, t_stack *b, int len, int cnt)//, int median)
 {
 	// FP("merget sort started\n");
 	static int	call_time = 0;
 	int			i;
+	int			median;
 
 	i = 0;
+	median = (a->max + b->min) / 2;
+	// FP("median %d & new me %d\n", median, )
 	// FP("need to put in original order\n");
 	while (call_time && len - cnt > i++)
 		(dir_setting(b) && peek(b) != b->min) ?
@@ -59,21 +60,23 @@ void	merge_sort(t_stack *a, t_stack *b, int len, int cnt, int median)
 		// DP(a, b, "rra");
 	// FP("now it has original order\n");
 
-	sort(a, b, dir_setting(b), cnt);
+	sort(a, b, dir_setting(b), &cnt);
 	// FP("sorting has been finished\n");
 	if (check_sorted(a, a->cnt))
 		return ;
 	// FP("[%d]number is not yet sorted\n", cnt);
-	// i = 0;
 	while (peek(a) <= median)
 		DP(a, b, "ra");
-	while (check_sorted(a, unsorted_cnt(a)) && a->cnt > cnt)
+
+	while (check_sorted(a, unsorted_cnt(a)) && a->cnt - cnt > cnt)
 	{
 		DP(a, b, "ra");
 		cnt++;
 		if (check_sorted(a, a->cnt))
 			return ;
 	}
+	// cnt > 0 ?
+	// split or sort again!
 	// median++;
 	// sorted_to_last(a, &cnt);
 	// if (check_sorted(a, a->cnt))
@@ -82,7 +85,7 @@ void	merge_sort(t_stack *a, t_stack *b, int len, int cnt, int median)
 }
 
 // // max and min finder
-void	sort(t_stack *a, t_stack *b, int dir, int cnt)
+void	sort(t_stack *a, t_stack *b, int dir, int *cnt)
 {
 	// int median;
 
@@ -166,17 +169,20 @@ void	sorted_to_last(t_stack *stk, int *cnt)
 	while (node->next)
 		node = node->next;
 	last_sorted = node->data;
+	// FP("first last sorted %d\n", last_sorted);
 	node = stk->top;
 	while (*cnt > 0 && node->data == 1 + last_sorted &&
 		node->data < node->next->data)
 	{
 		last_sorted = node->data;
+		// FP("last sorted %d\n", last_sorted);
 		DP(stk, stk, "ra");
 		*cnt -= 1;
 	}
 	while (last_sorted + 1 == peek(stk))
 	{
 		last_sorted = node->data;
+		// FP("last sorted %d\n", last_sorted);
 		DP(stk, stk, "ra");
 	}
 }

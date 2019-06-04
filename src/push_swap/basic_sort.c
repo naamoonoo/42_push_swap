@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 15:20:10 by hnam              #+#    #+#             */
-/*   Updated: 2019/05/27 23:08:07 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/03 17:28:43 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,16 @@ void	sort_only_5(t_stack *a, t_stack *b)
 
 void	sort_a(t_stack *a, t_stack *b, int cnt)
 {
-	// FP("@@@@@@@sort AAAAAAA@@@@@@@[%d]\n", cnt);
 	if (check_sorted(a, cnt))
 	{
-		DP(a, b, "ra");
-		cnt--;
+		while (--cnt > 0)
+			DP(a, b, "ra");
 		return ;
 	}
+	else if (!cnt)
+		return ;
+	else if (cnt == 1)
+		return DP(a, b, "ra");
 	else if (cnt == 2)
 		DP(a, b, "sa");
 	else if (cnt == 3 && ((a->top->data > a->top->next->data &&
@@ -77,10 +80,11 @@ void	sort_a(t_stack *a, t_stack *b, int cnt)
 			DP(a, b, "sa");
 			DP(a, b, "pa");
 		}
-	// else if (cnt > 3)
-	// 	split_sort(a, b, cnt);
 	sort_a(a, b, cnt);
 }
+
+
+
 
 // 1
 // void	sort(t_stack *a, t_stack *b, int dir)
