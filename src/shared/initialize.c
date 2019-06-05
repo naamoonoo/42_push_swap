@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:20:58 by hnam              #+#    #+#             */
-/*   Updated: 2019/06/03 17:32:35 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/04 18:32:30 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		initialize_stack(t_stack *s, int ac, char *av[])
 	int		tmp;
 	int		count;
 	char	**tmps;
-	int		*sets;
+	// int		*sets;
 
 	tmp = 0;
 	tmps = (ac == 2 && ft_strchr(av[1], ' ')) ? ft_strsplit(av[1], ' ') : av;
@@ -25,16 +25,43 @@ int		initialize_stack(t_stack *s, int ac, char *av[])
 		while (tmps[tmp])
 			ac = ++tmp - 1;
 	count = tmp ? ac + 1 : ac;
-	if (!(sets = validation(tmps, count, ac)))
-		return (0);
-	// still not working in some place
+	// if (!(sets = validation(tmps, count, ac)))
+	// 	return (0);
+
+	// int i = 1;
+	// while (i <= count)
+	// {
+	// 	// push(s, sets[i]);
+
+	// 	FP("new arr[%d]\t%d\n", i, sets[i]);
+	// 	i++;
+	// }
+	// tmp = -1;
+	// while (++tmp < count)
 	while (count--)
 	{
-		// FP("sets[%d] : %d\n", ac, sets[ac]);
-		if (is_existed(s, sets[ac]))
+		if ((!(tmp = ft_atol(tmps[ac])) && ft_strcmp(tmps[ac], "0")) ||
+			tmp > INT_MAX || tmp < INT_MIN || is_existed(s, tmp))
 			return (0);
-		push(s, sets[ac--]);
+		push(s, tmp);
+		ac--;
+
+		// tmp = sets[i];
+		// FP("sets[%d]\t%d\n", ac, sets[ac]);
+		// if (is_existed(s, sets[ac]))
+		// 	return (0);
+		// push(s, sets[ac--]);
 	}
+	// int i = 0;
+	// while (i < count)
+	// {
+	// 	// push(s, sets[i]);
+
+	// 	FP("new arr[%d]\t%d\n", i, sets[i]);
+	// 	i++;
+	// }
+	// s->cnt +=1;
+	// return (0);
 	return (1);
 }
 

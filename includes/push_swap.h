@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 13:31:49 by hnam              #+#    #+#             */
-/*   Updated: 2019/06/03 17:34:08 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/04 17:18:46 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct			s_stack
 	int					min;
 	int					max;
 	int					cnt;
+	// int					last_sorted;
 }						t_stack;
 
 
@@ -66,9 +67,11 @@ void					sort_only_3(t_stack *a);
 void					sort_only_5(t_stack *a, t_stack *b);
 
 void	sort_a(t_stack *a, t_stack *b, int cnt);
-void	sort(t_stack *a, t_stack *b, int dir, int *cnt);
+void	sort(t_stack *a, t_stack *b, int dir, int cnt);
+// void	sort(t_stack *a, t_stack *b, int dir, int *cnt);
 void	merge_sort(t_stack *a, t_stack *b, int len, int cnt);//, int median);
 void	split_sort(t_stack *a, t_stack *b, int len);
+void	split_a(t_stack *a, t_stack *b, int len);
 // void	split_sort(t_stack *a, t_stack *b, int len, int last);
 
 // int		sort(t_stack *a, t_stack *b, int dir, int unsorted);

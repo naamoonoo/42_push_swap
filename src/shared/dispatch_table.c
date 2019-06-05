@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 12:06:01 by hnam              #+#    #+#             */
-/*   Updated: 2019/06/03 17:23:32 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/04 18:20:59 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int		read_dispatcher(t_stack *a, t_stack *b, int visual)
 		DP(a, b, command);
 		if (visual)
 		{
-			system("clear");
 
+			system("clear");
 			FP("Stack A---------------------------------------------------\n");
 			show(a, 1, a->cnt + b->cnt);
 			// write(1, "\e[0J\e[80;1H", 10);

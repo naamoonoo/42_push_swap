@@ -19,7 +19,8 @@ int	main(int ac, char *av[])
 	if (a->cnt <= 5)
 		sort_only_5(a, b);
 	else
-		split_sort(a, b, a->cnt);
+		split_a(a, b, a->cnt);
+		// split_sort(a, b, a->cnt);
 
 
 	// sort_3(a, b);
