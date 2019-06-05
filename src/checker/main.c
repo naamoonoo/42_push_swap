@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 22:57:35 by hnam              #+#    #+#             */
-/*   Updated: 2019/06/04 23:24:40 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/04 23:33:49 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		main(int ac, char *av[])
 {
 	t_stack	*a;
 	t_stack	*b;
-	int 	visual;
+	int		visual;
 	int		color;
 
 	if (ac == 1)

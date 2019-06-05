@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 12:06:01 by hnam              #+#    #+#             */
-/*   Updated: 2019/06/04 22:58:56 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/04 23:33:16 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	dispatch_table(t_stack *a, t_stack *b, char *command)
 	FP("%s\n", command);
 }
 
-int		read_dispatcher(t_stack *a, t_stack *b, int visual, int color)
+int		read_dispatcher(t_stack *a, t_stack *b, int visual, int col)
 {
 	char		*command;
 	static int	counter = 0;
@@ -59,9 +59,9 @@ int		read_dispatcher(t_stack *a, t_stack *b, int visual, int color)
 		{
 			system("clear");
 			FP("Stack A---------------------------------------------------\n");
-			show(a, color, a->cnt + b->cnt);
+			show(a, col, get_big(a->max, b->max) + get_small(a->min, b->min));
 			FP("Stack B---------------------------------------------------\n");
-			show(b, color, a->cnt + b->cnt);
+			show(b, col, get_big(a->max, b->max) + get_small(a->min, b->min));
 		}
 		ft_strdel(&command);
 		counter += 1;
