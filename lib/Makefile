@@ -26,22 +26,23 @@ OBJS	=	$(O_PTF)	$(O_STR)	$(O_NUM)	$(O_MEM)	$(O_LST)	$(O_GNL)	$(O_FD)	$(O_CHK)
 all		:	$(NAME)
 
 obj		:
-			mkdir obj
-			mkdir obj/printf
-			mkdir obj/string
-			mkdir obj/number
-			mkdir obj/memory
-			mkdir obj/list
-			mkdir obj/get_next_line
-			mkdir obj/file_descriptor
-			mkdir obj/checking
+			@mkdir obj
+			@mkdir obj/printf
+			@mkdir obj/string
+			@mkdir obj/number
+			@mkdir obj/memory
+			@mkdir obj/list
+			@mkdir obj/get_next_line
+			@mkdir obj/file_descriptor
+			@mkdir obj/checking
 
 obj/%.o	: 	src/%.c
-			$(CC) $(CFLAGS) $(OPTION) -c -o $@ $<
+			@$(CC) $(CFLAGS) $(OPTION) -c -o $@ $<
 
 $(NAME)	: 	obj $(OBJS)
-			ar rc $(NAME) $(OBJS)
-			ranlib $(NAME)
+			@ar rc $(NAME) $(OBJS)
+			@ranlib $(NAME)
+			@echo "libftprintf.a has been made"
 
 clean	:
 			-rm -rf obj

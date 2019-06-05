@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 12:06:01 by hnam              #+#    #+#             */
-/*   Updated: 2019/06/04 18:20:59 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/04 22:58:56 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,46 +38,34 @@ void	dispatch_table(t_stack *a, t_stack *b, char *command)
 		else if (COMMAND_TO(command) == 'b')
 			command[1] == 'r' ? reverse_rotate(b) : rotate(b);
 	}
-
-
 	FP("%s\n", command);
-	// system("clear");
-	// FP("Stack A---------------------------------------------------\n");
-	// show(a, 1, a->cnt + b->cnt);
-	// FP("Stack B---------------------------------------------------\n");
-	// show(b, 1, a->cnt + b->cnt);
 }
 
-int		read_dispatcher(t_stack *a, t_stack *b, int visual)
+int		read_dispatcher(t_stack *a, t_stack *b, int visual, int color)
 {
-	char	*command;
-	int		counter;
+	char		*command;
+	static int	counter = 0;
 
 	command = NULL;
-	counter = 0;
-	while(get_next_line(0, &command) > 0)
+	while (get_next_line(0, &command) > 0)
 	{
 		if (!check_valid_command(command))
 		{
-
 			FP("Error : INVALID COMMAND[%s]\n", command);
-			// return (0);
-			continue; // return (0);
+			continue;
 		}
 		DP(a, b, command);
 		if (visual)
 		{
-
 			system("clear");
 			FP("Stack A---------------------------------------------------\n");
-			show(a, 1, a->cnt + b->cnt);
-			// write(1, "\e[0J\e[80;1H", 10);
+			show(a, color, a->cnt + b->cnt);
 			FP("Stack B---------------------------------------------------\n");
-			show(b, 1, a->cnt + b->cnt);
+			show(b, color, a->cnt + b->cnt);
 		}
 		ft_strdel(&command);
 		counter += 1;
 	}
-	FP("[%d] number sorted with total move : %d\n", a->cnt, counter);
+	FP("[%d] number sorted with{blue} %d{eoc} move\n", a->cnt, counter);
 	return (1);
 }

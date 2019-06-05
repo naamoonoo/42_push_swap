@@ -1,35 +1,3 @@
-# NAME = push_swap
-
-# CC=gcc
-# CFLAGS=-Wall -Wextra -Werror -Iincludes -g -fsanitize=address
-# SRC=$(wildcard shared/*.c)
-# OBJ = $(patsubst shared/%.c, obj/%.o, $(SRC))
-
-# all: $(NAME)
-
-# obj:
-# 	mkdir obj
-
-# obj/%.o: shared/%.c
-# 	gcc $(CFLAGS) $(OPTION) -c -o $@ $<
-
-# $(NAME): obj $(OBJ)
-# 	cd lib && make
-# 	mv lib/libftprintf.a .
-# 	$(CC) -o $(NAME) $(CFLAGS) $(SRC) libftprintf.a
-
-# clean:
-# 	-cd lib && make clean
-# 	-rm -rf obj
-
-# fclean: clean
-# 	-rm -f $(NAME)
-# 	-rm -f libftprintf.a
-
-# re: fclean $(NAME)
-
-# .PHONY: clean fclean re
-
 NAME	=	PUSH_SWAP
 CH		=	checker
 PS		=	push_swap
@@ -61,43 +29,21 @@ $(NAME)	:	obj $(CH_O) $(PS_O)
 			@mv lib/libftprintf.a .
 			@$(CC) -o $(CH) $(CFLAGS) $(CH_O) libftprintf.a
 			@$(CC) -o $(PS) $(CFLAGS) $(PS_O) libftprintf.a
-
-db		:	obj $(CH_O) $(PS_O)
-			# clear
-			@cd lib && make
-			# clear
-			@mv lib/libftprintf.a .
-			# clear
-			@$(CC) -o $(CH) $(CFLAGS) $(CH_O) libftprintf.a $(DEBUG)
-			# clear
-			@$(CC) -o $(PS) $(CFLAGS) $(PS_O) libftprintf.a $(DEBUG)
-			clear
-			###### excutable file $(PS) and $(CH) has been made
-
-# $(PS)	: 	obj $(PS_O)
-# 			cd lib && make
-# 			mv lib/libftprintf.a .
-# 			$(CC) -o $(PS) $(CFLAGS) $(PS_O) libftprintf.a
-
-# $(CH)	: 	obj $(CH_O)
-# 			cd lib && make
-# 			mv lib/libftprintf.a .
-# 			$(CC) -o $(CH) $(CFLAGS) $(CH_O) libftprintf.a
-
+			@echo "excutable file $(PS) and $(CH) has been made"
 
 obj		:
-			mkdir obj
-			mkdir obj/shared
-			mkdir obj/push_swap
-			mkdir obj/checker
+			@mkdir obj
+			@mkdir obj/shared
+			@mkdir obj/push_swap
+			@mkdir obj/checker
 
 clean	:
-			# -cd lib && make clean
+			-cd lib && make clean
 			-rm -rf obj
 
 fclean	: clean
 			-rm -f $(PS) $(CH)
-			# -rm -f libftprintf.a
+			-rm -f libftprintf.a
 
 re		: fclean $(PS) $(CH)
 

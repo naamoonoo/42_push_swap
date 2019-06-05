@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 12:04:38 by hnam              #+#    #+#             */
-/*   Updated: 2019/06/03 17:21:20 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/04 22:58:25 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,28 @@ int		check_sorted_r(t_stack *stack, int cnt)
 
 int		check_valid_command(char *command)
 {
-	char	*cmd[12] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb",
+	static char	*cmd[12] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb",
 						"rr", "rra", "rrb", "rrr", NULL};
-	int		i;
+	int			i;
 
 	i = -1;
 	while (cmd[++i])
 		if (!ft_strcmp(cmd[i], command))
 			return (1);
+	return (0);
+}
+
+int		is_existed(t_stack *stack, int val)
+{
+	t_node	*tmp;
+
+	if (!(tmp = stack->top))
+		return (0);
+	while (tmp)
+	{
+		if (tmp->data == val)
+			return (1);
+		tmp = tmp->next;
+	}
 	return (0);
 }

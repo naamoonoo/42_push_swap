@@ -6,11 +6,36 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 12:07:30 by hnam              #+#    #+#             */
-/*   Updated: 2019/06/03 17:21:34 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/04 23:01:11 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int		initialize_stack(t_stack *s, int ac, char *av[])
+{
+	long	tmp;
+	int		count;
+	char	**tmps;
+
+	tmp = 0;
+	tmps = (ac == 2 && ft_strchr(av[1], ' ')) ? ft_strsplit(av[1], ' ') : av;
+	if (ac-- == 2 && ft_strchr(av[1], ' '))
+		while (tmps[tmp])
+			ac = ++tmp - 1;
+	count = tmp ? ac + 1 : ac;
+	while (count--)
+	{
+		if (ac == 1 && tmps[ac][0] == '-')
+			break ;
+		if ((!(tmp = ft_atol(tmps[ac])) && ft_strcmp(tmps[ac], "0")) ||
+			tmp > INT_MAX || tmp < INT_MIN || is_existed(s, tmp))
+			return (0);
+		push(s, tmp);
+		ac--;
+	}
+	return (1);
+}
 
 void	ps_swap(t_stack *stack)
 {
@@ -28,16 +53,13 @@ void	ps_push(t_stack *from, t_stack *to)
 	int	tmp;
 
 	if ((tmp = pop(from)) == INT_MIN)
-	{
-		FP("nothing to move in stack\n");
 		return ;
-	}
 	push(to, tmp);
 }
 
 void	rotate(t_stack *stack)
 {
-	int 	tmp;
+	int		tmp;
 	t_node	*top;
 	t_node	*new;
 
@@ -60,7 +82,7 @@ void	rotate(t_stack *stack)
 
 void	reverse_rotate(t_stack *stack)
 {
-	int 	tmp;
+	int		tmp;
 	t_node	*last;
 
 	if (!stack->top || !stack->top->next)

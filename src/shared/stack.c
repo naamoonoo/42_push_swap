@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/17 14:55:50 by hnam              #+#    #+#             */
-/*   Updated: 2019/06/03 17:16:32 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/04 23:00:08 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,13 @@ int		pop(t_stack *stack)
 	if (data == stack->max)
 		stack->max = stack->top ? stack->top->data : INT_MIN;
 	set_max_min(stack);
-	return data;
+	return (data);
 }
 
 int		peek(t_stack *stack)
 {
-	// FP("%d is top/first out/last in value\n", stack->top->data);
 	if (stack->top)
-		return stack->top->data;
+		return (stack->top->data);
 	return (INT_MIN);
 }
 
@@ -73,10 +72,8 @@ void	show(t_stack *stack, int show, int total)
 {
 	t_node	*curr;
 
-	// FP("last in == first out == top \n");
 	if (!(curr = stack->top))
 		return ;
-	// FP("max : %d\t min : %d\t count : %d\n", stack->max, stack->min, stack->cnt);
 	while (curr)
 	{
 		show ?
@@ -84,5 +81,4 @@ void	show(t_stack *stack, int show, int total)
 			: FP("%d\n", curr->data);
 		curr = curr->next;
 	}
-	// FP("first in == last out == last\n");
 }
