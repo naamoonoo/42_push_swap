@@ -6,7 +6,7 @@
 /*   By: hnam <hnam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 21:45:05 by hnam              #+#    #+#             */
-/*   Updated: 2019/06/04 23:02:45 by hnam             ###   ########.fr       */
+/*   Updated: 2019/06/04 23:19:58 by hnam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int		get_median(t_stack *stack, int len)
 
 void	visual_bar(int number, int total)
 {
-	!number ? (number = 1) : 0;
 	FP("%4d\t\033[48;2;%d;90;%dm",
 	number, 255 - 255 / total * number, 255 / total * number);
 	while (number--)
