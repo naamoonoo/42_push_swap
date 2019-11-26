@@ -50,9 +50,9 @@ make
 
 instead of using original `push_swap` and `checker`. there are test programs in `resources` directory.
 
-> `rn` generate the random number
-> `ps` generate random number and run `push_swap`, return count of instructions.
-> `ch` using randomly generated numbers, run `push_swap` and `checker` with visualizer
+> `rn` generate the random number<br/>
+> `ps` generate random number and run `push_swap`, return count of instructions.<br/>
+> `ch` using randomly generated numbers, run `push_swap` and `checker` with visualizer<br/>
 
 ```
 Usage: ./resources/tester[ps | ch] <num>
